@@ -6,8 +6,15 @@ Mail Pop-out turns the Nextcloud Mail composer into a draggable, resizable float
 - Website: https://pmpksamy.com
 - App URL: https://pmpksamy.com/nextcloud_app/mail_popout
 - Documentation: https://pmpksamy.com/nextcloud_app/mail_popout
+- Contact: [Maalig@pmpksamy.com](mailto:Maalig@pmpksamy.com)
 
 Repository: https://github.com/iampmpksamy/NextCloud_Mail_PopOut_Plugin
+
+[Wiki and user guide](https://github.com/iampmpksamy/NextCloud_Mail_PopOut_Plugin/wiki)
+
+![Annotated Mail Pop-out composer showing the new-window control](docs/images/mail-popout-composer-mockup.png)
+
+The blue callout identifies the new-window control. Select it to move the live Mail composer into a separate browser window without replacing Mail's draft or send workflow.
 
 Because the app moves Mail's existing composer instead of replacing it, Mail remains responsible for autosaved drafts, recipients, the rich-text editor, attachments, sending, minimizing, and closing.
 
@@ -46,6 +53,10 @@ The most recent in-page position and size are saved locally in the browser.
 ## Support
 
 Report reproducible problems at https://github.com/iampmpksamy/NextCloud_Mail_PopOut_Plugin/issues.
+
+- Email: [Maalig@pmpksamy.com](mailto:Maalig@pmpksamy.com)
+- Website: https://pmpksamy.com
+- Documentation: https://pmpksamy.com/nextcloud_app/mail_popout
 
 ## Validation
 

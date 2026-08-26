@@ -147,3 +147,9 @@ For AIO:
 ```bash
 docker exec --user www-data nextcloud-aio-nextcloud php occ log:watch
 ```
+
+## Contact
+
+- Email: [Maalig@pmpksamy.com](mailto:Maalig@pmpksamy.com)
+- Website: https://pmpksamy.com
+- Issues: https://github.com/iampmpksamy/NextCloud_Mail_PopOut_Plugin/issues

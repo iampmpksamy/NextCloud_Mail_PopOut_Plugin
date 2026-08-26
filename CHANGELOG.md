@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.2 — 2026-08-26
+
+- Added an annotated composer mockup to README and the user documentation.
+- Added a complete GitHub Wiki covering installation, use, compatibility, and troubleshooting.
+- Added the project contact email and website.
+
 ## 1.0.1 — 2026-08-26
 
 - Added complete author, website, app-page, documentation, repository, and issue-tracker metadata.
