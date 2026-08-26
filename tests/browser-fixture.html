@@ -1,0 +1,109 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: AGPL-3.0-or-later -->
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Mail Pop-out browser fixture</title>
+	<link rel="stylesheet" href="/css/mail-popout.css">
+	<script>
+		history.replaceState(null, '', '/apps/mail/test-fixture')
+		window.OC = {
+			L10N: {
+				translate: function(app, text) { return text },
+			},
+		}
+	</script>
+</head>
+<body>
+	<div id="legacy" class="modal-mask" aria-modal="true">
+		<div class="modal-header"><h2 class="modal-header__name">New message</h2></div>
+		<div class="modal-wrapper modal-wrapper--normal">
+			<div class="modal-container">
+				<div class="modal-container__content">
+					<div class="modal-content">
+						<div class="left-pane">
+							<button class="maximize-button" type="button">Maximize</button>
+							<button class="minimize-button" type="button">Minimize</button>
+							<div class="message-composer"><input aria-label="To"></div>
+						</div>
+					</div>
+				</div>
+				<button class="modal-container__close" type="button">Close</button>
+			</div>
+		</div>
+	</div>
+
+	<div id="modern" class="floating-composer">
+		<div class="floating-composer__header">
+			<h2 class="floating-composer__title">Draft</h2>
+			<div class="floating-composer__actions">
+				<button type="button">Maximize</button>
+				<button type="button" title="Minimize composer">Minimize</button>
+				<button type="button">Close</button>
+			</div>
+		</div>
+		<div class="message-composer"><textarea aria-label="Message"></textarea></div>
+	</div>
+
+	<output id="test-result">WAITING</output>
+	<script src="/js/mail-popout.js"></script>
+	<script>
+		window.setTimeout(function() {
+			const failures = []
+			const check = function(condition, message) {
+				if (!condition) failures.push(message)
+			}
+			const complete = function() {
+				const result = document.getElementById('test-result')
+				result.textContent = failures.length ? 'FAIL: ' + failures.join('; ') : 'PASS'
+				result.dataset.complete = 'true'
+			}
+
+			const legacy = document.getElementById('legacy')
+			const modern = document.getElementById('modern')
+			check(legacy.classList.contains('mail-popout--docked'), 'legacy composer was not docked')
+			check(legacy.getAttribute('aria-modal') === 'false', 'legacy aria-modal was not disabled')
+			check(legacy.querySelector('.mail-popout-titlebar__title')?.textContent === 'New message', 'legacy title was not copied')
+			check(legacy.querySelector('.mail-popout-button')?.getAttribute('aria-label') === 'Open composer in a separate window', 'legacy pop-out button is missing')
+			check(modern.classList.contains('mail-popout--docked'), 'modern composer was not enhanced')
+			check(modern.querySelectorAll('.mail-popout-button').length === 1, 'modern composer button was duplicated or missing')
+			check(window.__mailPopoutInitialized === true, 'controller did not initialize')
+
+			const handle = legacy.querySelector('.mail-popout-titlebar')
+			const panel = legacy.querySelector('.modal-wrapper')
+			handle.dispatchEvent(new PointerEvent('pointerdown', { bubbles: true, button: 0, clientX: 20, clientY: 20 }))
+			document.dispatchEvent(new PointerEvent('pointermove', { bubbles: true, clientX: 40, clientY: 40 }))
+			document.dispatchEvent(new PointerEvent('pointerup', { bubbles: true, clientX: 40, clientY: 40 }))
+			check(panel.classList.contains('mail-popout--positioned'), 'dragging did not position the composer')
+
+			legacy.querySelector('.mail-popout-button').click()
+			window.setTimeout(function() {
+				const indicator = document.querySelector('.mail-popout-indicator')
+				const detachedDocument = legacy.ownerDocument
+				check(detachedDocument !== document, 'composer did not move to the browser window')
+				check(Boolean(indicator), 'parent-page indicator was not created')
+
+				if (detachedDocument === document || !indicator) {
+					complete()
+					return
+				}
+
+				legacy.dispatchEvent(new detachedDocument.defaultView.PointerEvent('pointerdown', { bubbles: true }))
+				const portal = document.createElement('div')
+				portal.className = 'v-popper__popper'
+				document.body.appendChild(portal)
+
+				window.setTimeout(function() {
+					check(portal.ownerDocument === detachedDocument, 'body-level popover did not follow the composer')
+					indicator.querySelector('button:last-child').click()
+					window.setTimeout(function() {
+						check(legacy.ownerDocument === document, 'composer did not return to Mail')
+						check(portal.ownerDocument === document, 'body-level popover did not return to Mail')
+						complete()
+					}, 100)
+				}, 100)
+			}, 150)
+		}, 700)
+	</script>
+</body>
+</html>

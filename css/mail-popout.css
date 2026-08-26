@@ -1,0 +1,246 @@
+/**
+ * SPDX-FileCopyrightText: 2026 pmpksamy
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
+.modal-mask.mail-popout--docked {
+	pointer-events: none !important;
+	background: transparent !important;
+}
+
+.modal-mask.mail-popout--docked > .modal-header {
+	display: none !important;
+}
+
+.modal-mask.mail-popout--docked > .modal-wrapper {
+	position: fixed !important;
+	z-index: 10020;
+	right: calc(var(--body-container-margin, 0px) + 12px);
+	bottom: calc(var(--body-container-margin, 0px) + 12px);
+	left: auto;
+	top: auto;
+	display: block;
+	box-sizing: border-box;
+	width: min(760px, calc(100vw - 24px));
+	height: min(760px, calc(100vh - var(--header-height, 50px) - 24px));
+	min-width: min(420px, calc(100vw - 16px));
+	min-height: min(460px, calc(100vh - 16px));
+	margin: 0;
+	resize: both;
+	overflow: hidden;
+	pointer-events: auto;
+}
+
+.modal-mask.mail-popout--docked > .modal-wrapper > .modal-container {
+	display: flex;
+	flex-direction: column;
+	width: 100% !important;
+	max-width: none !important;
+	height: 100% !important;
+	max-height: none !important;
+	border: 1px solid var(--color-border);
+	border-radius: var(--border-radius-large, 12px);
+	box-shadow: 0 12px 42px rgb(0 0 0 / 35%);
+}
+
+.modal-mask.mail-popout--docked .modal-container__content,
+body.mail-popout-popup-body .modal-mask.mail-popout-window .modal-container__content {
+	display: flex;
+	flex: 1 1 auto;
+	min-height: 0;
+	overflow: hidden;
+}
+
+.modal-mask.mail-popout--docked .modal-content,
+body.mail-popout-popup-body .modal-mask.mail-popout-window .modal-content {
+	min-height: 0;
+}
+
+.mail-popout-titlebar {
+	display: flex;
+	align-items: center;
+	box-sizing: border-box;
+	height: 48px;
+	min-height: 48px;
+	padding-inline-start: 14px;
+	border-bottom: 1px solid var(--color-border);
+	background: var(--color-main-background);
+	cursor: move;
+	touch-action: none;
+	user-select: none;
+}
+
+.mail-popout-titlebar--dragging {
+	cursor: grabbing;
+}
+
+.mail-popout-titlebar__title {
+	min-width: 0;
+	flex: 1 1 auto;
+	overflow: hidden;
+	font-size: var(--default-font-size);
+	font-weight: 600;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.mail-popout-titlebar__actions {
+	display: flex;
+	align-items: center;
+	margin-inline-end: 108px;
+}
+
+.mail-popout-button {
+	display: inline-grid;
+	place-items: center;
+	box-sizing: border-box;
+	width: var(--default-clickable-area, 44px);
+	height: var(--default-clickable-area, 44px);
+	min-width: var(--default-clickable-area, 44px);
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: transparent;
+	color: var(--color-main-text);
+	cursor: pointer;
+}
+
+.mail-popout-button:hover,
+.mail-popout-button:focus-visible {
+	background: var(--color-background-hover, rgb(127 127 127 / 15%));
+}
+
+.mail-popout-button:focus-visible {
+	outline: 2px solid var(--color-primary-element);
+	outline-offset: -2px;
+}
+
+.mail-popout-button--return svg {
+	transform: rotate(180deg);
+}
+
+.floating-composer.mail-popout--docked {
+	min-width: min(420px, calc(100vw - 16px));
+	min-height: min(460px, calc(100vh - 16px));
+	resize: both;
+	overflow: hidden;
+}
+
+.floating-composer.mail-popout--docked .floating-composer__header {
+	cursor: move;
+	touch-action: none;
+}
+
+.floating-composer.mail-popout--docked .floating-composer__actions {
+	cursor: default;
+}
+
+.mail-popout-indicator {
+	position: fixed;
+	z-index: 10030;
+	right: calc(var(--body-container-margin, 0px) + 12px);
+	bottom: calc(var(--body-container-margin, 0px) + 12px);
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	max-width: calc(100vw - 24px);
+	padding: 8px 10px 8px 14px;
+	border: 1px solid var(--color-border);
+	border-radius: var(--border-radius-large, 12px);
+	background: var(--color-main-background);
+	box-shadow: 0 8px 30px rgb(0 0 0 / 25%);
+	color: var(--color-main-text);
+}
+
+.mail-popout-indicator button {
+	min-height: 34px;
+	padding: 0 12px;
+	border: 0;
+	border-radius: var(--border-radius-pill, 18px);
+	background: var(--color-primary-element);
+	color: var(--color-primary-element-text);
+	cursor: pointer;
+}
+
+body.mail-popout-popup-body {
+	width: 100vw;
+	height: 100vh;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background: var(--color-main-background);
+	color: var(--color-main-text);
+}
+
+body.mail-popout-popup-body > .modal-mask.mail-popout-window {
+	position: fixed !important;
+	inset: 0 !important;
+	display: block !important;
+	width: 100vw !important;
+	height: 100vh !important;
+	background: transparent !important;
+}
+
+body.mail-popout-popup-body > .modal-mask.mail-popout-window > .modal-header {
+	display: none !important;
+}
+
+body.mail-popout-popup-body > .modal-mask.mail-popout-window > .modal-wrapper {
+	display: block;
+	width: 100% !important;
+	height: 100% !important;
+}
+
+body.mail-popout-popup-body > .modal-mask.mail-popout-window > .modal-wrapper > .modal-container {
+	display: flex;
+	flex-direction: column;
+	width: 100% !important;
+	max-width: none !important;
+	height: 100% !important;
+	max-height: none !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+}
+
+body.mail-popout-popup-body .mail-popout-window .maximize-button {
+	display: none !important;
+}
+
+body.mail-popout-popup-body > .floating-composer.mail-popout-window {
+	position: fixed !important;
+	inset: 0 !important;
+	box-sizing: border-box;
+	width: 100vw !important;
+	max-width: none !important;
+	height: 100vh !important;
+	min-height: 0 !important;
+	max-height: none !important;
+	resize: none !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+}
+
+body.mail-popout-popup-body .floating-composer__actions > .mail-popout-button + button {
+	display: none !important;
+}
+
+@media (max-width: 700px), (max-height: 520px) {
+	.modal-mask.mail-popout--docked > .modal-wrapper,
+	.floating-composer.mail-popout--docked {
+		position: fixed !important;
+		inset: 0 !important;
+		width: 100vw !important;
+		max-width: none !important;
+		height: 100vh !important;
+		min-width: 0 !important;
+		min-height: 0 !important;
+		max-height: none !important;
+		resize: none;
+	}
+
+	.modal-mask.mail-popout--docked > .modal-wrapper > .modal-container,
+	.floating-composer.mail-popout--docked {
+		border-radius: 0 !important;
+	}
+}

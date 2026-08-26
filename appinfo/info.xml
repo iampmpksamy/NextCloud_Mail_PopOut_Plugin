@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+  - SPDX-FileCopyrightText: 2026 pmpksamy
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+<info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+	<id>mail_popout</id>
+	<name>Mail Pop-out</name>
+	<summary>Use the Mail composer as a floating or separate window</summary>
+	<description><![CDATA[
+Name: Mail Pop-out
+ID: mail_popout
+Author: pmpksamy
+Website: https://pmpksamy.com
+App URL: https://pmpksamy.com/nextcloud_app/mail_popout
+Documentation & Installation Guide URL: https://pmpksamy.com/nextcloud_app/mail_popout
+Version: 1.0.1
+
+Turns the Nextcloud Mail composer into a draggable, resizable floating window and adds a button that can move the live composer into a separate browser window. The original Mail composer remains in control of drafts, attachments, sending, minimizing, and closing.
+	]]></description>
+	<version>1.0.1</version>
+	<licence>agpl</licence>
+	<author mail="" homepage="https://pmpksamy.com">pmpksamy</author>
+	<namespace>MailPopout</namespace>
+	<category>customization</category>
+	<category>social</category>
+	<documentation>
+		<user>https://pmpksamy.com/nextcloud_app/mail_popout</user>
+		<admin>https://pmpksamy.com/nextcloud_app/mail_popout</admin>
+	</documentation>
+	<website>https://pmpksamy.com</website>
+	<bugs>https://github.com/iampmpksamy/NextCloud_Mail_PopOut_Plugin/issues</bugs>
+	<repository type="git">https://github.com/iampmpksamy/NextCloud_Mail_PopOut_Plugin.git</repository>
+	<screenshot>https://pmpksamy.com/nextcloud_app/mail_popout</screenshot>
+	<dependencies>
+		<php min-version="8.1" max-version="8.5" />
+		<nextcloud min-version="32" max-version="35" />
+	</dependencies>
+</info>
